@@ -1,12 +1,11 @@
 import "./theme/index.css";
-import { fetchTodos,fetchTodo } from './services/todo.service';
-import { TODOS_URL } from './core/constants'
+import { fetchTodos, fetchTodoById } from './services/todo.service';
 
 /** Initialization home page. */
 function initHomePage(): void {
   console.log("initHomePage");
-  fetchTodos(TODOS_URL)
-  fetchTodo(TODOS_URL + '/1')
+  fetchTodos()
+  fetchTodoById(10)
 }
 
 window.addEventListener("DOMContentLoaded", initHomePage);
