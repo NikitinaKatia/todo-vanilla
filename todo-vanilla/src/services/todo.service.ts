@@ -7,13 +7,13 @@ interface Todo{
   completed: boolean
 }
 
-export async function fetchTodos() : Promise<object> {
+export async function fetchTodos() : Promise<Todo> {
   const response = await fetch('https://jsonplaceholder.typicode.com/todos');
   const data : Todo = await response.json();
   return data
 }
 
-export async function fetchTodoById(id: number) : Promise<object> {
+export async function fetchTodoById(id: Todo['id']) : Promise<Todo> {
     const response = await fetch(`https://jsonplaceholder.typicode.com/todos/${id}`);
     const data : Todo = await response.json()
     return data
