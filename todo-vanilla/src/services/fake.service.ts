@@ -1,5 +1,5 @@
 /** Эти данные приходят с сервера. */
-export const headersInfo = [
+export const headersInfo: HeaderInfo[] = [
   {
     id: 1,
     title: "Todo",
@@ -15,8 +15,19 @@ export const headersInfo = [
     title: "Contact",
     path: "/contact",
   },
+  {
+    id: 4,
+    title: "Location",
+    path: "/location"
+  }
 ];
 
-export function addHeaderInfo(headerInfo: any) {
+export interface HeaderInfo{
+  id: number;
+  title: string;
+  path: string
+}
+
+export function addHeaderInfo(headerInfo: HeaderInfo) {
   headersInfo.push(headerInfo);
 }

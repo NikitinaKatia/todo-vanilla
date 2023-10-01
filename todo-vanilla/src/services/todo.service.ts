@@ -1,6 +1,7 @@
 /** Сервис для взаимодействия с Todo: получения данных, обновление данных, удаление и т.п. */
 
-interface Todo{
+export interface Todo{
+  slice(arg0: number, arg1: number): unknown;
   userId: number;
   id: number;
   title: string;
