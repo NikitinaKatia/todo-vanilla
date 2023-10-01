@@ -4,16 +4,32 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css">
     <title>Todo app vanilla + TS</title>
   </head>
   <body>
     <div id="app">
-      <div class="header"></div>
-      <ul class="todo-list">
-
-      </ul>
-      <button class="btn">Click</button>
-    </div>
+      <div class="todo-app">
+        <h1 class="header-text">Todo List</h1>
+        <div class="todo-list-block">
+          <div class="input-box">
+            <input type="text" placeholder="Что нужно сделать?">
+            <button class="add-todo">ADD</button>
+          </div>
+          <div class="buttons-group">
+            <button>Все</button>
+            <button>Активные</button>
+            <button>Завершенные</button>
+            <button>Очистить завершенные</button>
+          </div>
+        </div>
+        <div class="header"></div>
+        <ul class="todo-list">
+  
+        </ul>
+        <button class="btn">Click</button>
+      </div>
+      </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
