@@ -2,11 +2,13 @@
 
 import { fetchTodos } from "../services/todo.service";
 
-export function getDomElement(selector: string): Element {
-  const element = document.querySelector(selector);
+export function getDomElement<T extends Element>(
+  selector: string): T {
+  const element = document.querySelector<T>(selector);
   if (element !== undefined && element !== null) {
     return element;
   }
+
   throw new Error(`Element not found by selector ${selector}`);
 }
 
@@ -29,4 +31,18 @@ export async function renderTodos() {
     const listItem = createListItem(todo.title);
     todoListElement.append(listItem);
   });
+}
+
+
+export function createAddTodoClick() {
+  const todoList = getDomElement('.todo-list');
+  const btnAddTodoElement = getDomElement('.add-todo');
+  const input: HTMLInputElement = getDomElement('.addInput');
+  console.log(todoList);
+  
+  btnAddTodoElement.addEventListener('click', () => {
+    const todoItemElement = createListItem(input.value)
+    todoList.append(todoItemElement);
+    input.value = '';
+  })
 }
