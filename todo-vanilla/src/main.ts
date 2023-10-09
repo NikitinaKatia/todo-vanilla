@@ -1,11 +1,10 @@
 import "./theme/index.css";
-import { renderTodos, createAddTodoClick } from "./ui/general";
+import { createAddTodoClick } from "./ui/general";
 
 /** Initialization home page. */
 function initHomePage(): void {
   console.log("initHomePage");
 
-  renderTodos();
   createAddTodoClick()
 }
 
