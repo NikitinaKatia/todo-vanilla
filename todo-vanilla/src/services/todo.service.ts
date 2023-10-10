@@ -8,5 +8,3 @@ export interface Todo {
 }
 
 export const todos: Todo[] = [];
-
-

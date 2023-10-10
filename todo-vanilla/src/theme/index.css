@@ -15,13 +15,6 @@
   justify-content: center;
 }
 
-.todo-app {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  gap: 50px;
-}
-
 .todo-list-block {
   display: flex;
   gap: 50px;
@@ -30,5 +23,12 @@
 
 .todo-list {
   list-style: none;
+  margin: 20px 0 0;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
 }
 
