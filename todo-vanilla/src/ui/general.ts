@@ -3,8 +3,6 @@ import {v4 as uuidv4} from 'uuid';
 
 import { todos, Todo } from "../services/todo.service";
 
-let idTodo = uuidv4();
-
 export function getDomElement<T extends Element>(
   selector: string): T {
   const element = document.querySelector<T>(selector);
@@ -42,7 +40,7 @@ export function createListItem(text: string) {
   input.type = "checkbox";
   
   const todoItem: Todo = {
-    id: idTodo +=1,
+    id: uuidv4(),
     title: text,
     completed: input.checked,
   }
@@ -80,8 +78,6 @@ export function createAddTodoClick() {
   const todoList = getDomElement('.todo-list');
   const btnAddTodoElement = getDomElement('.add-todo');
   const input: HTMLInputElement = getDomElement('.addInput');
-
-  
 
   btnAddTodoElement.addEventListener('click', () => {
     if(input.value.trim() === '') {
