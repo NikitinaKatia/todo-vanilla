@@ -54,6 +54,22 @@
   cursor: pointer;
 }
 
+.btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
+.all-todos, .active-todos, .completed-todos {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  color: #191970;
+  background-color: #B0C4DE;
+  border: 1px solid #191970;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
 .todo-list-block {
   display: flex;
   gap: 50px;
