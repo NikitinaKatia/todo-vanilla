@@ -84,18 +84,19 @@ export function createAddTodoClick() {
     if(input.value.trim() === '') {
       return
     }
-    
+
     todoList.append(todoItemElement);
     input.value = '';
   })
 
   input.addEventListener('change', () => {
     const todoItemElement = createListItem(input.value)
+
       if(input.value.trim() === '') {
         return
       }
+      
       todoList.append(todoItemElement);
       input.value = '';
   })
-  
 }
