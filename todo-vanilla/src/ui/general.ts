@@ -13,7 +13,6 @@ export function getDomElement<T extends Element>(
   throw new Error(`Element not found by selector ${selector}`);
 }
 
-
 function createDeleteBtn(listItem: HTMLLIElement, id: string) {
   const deleteBtn = document.createElement('button');
   deleteBtn.textContent = 'X';
@@ -31,26 +30,16 @@ function createDeleteBtn(listItem: HTMLLIElement, id: string) {
   return deleteBtn
 }
 
-
-export function createListItem(text: string) {
+export function createListItem(todoItem: Todo) {
   const listItem = document.createElement("li");
   const input = document.createElement("input");
   const span = document.createElement("span");
   
   input.type = "checkbox";
+  input.checked = todoItem.completed
   
-  const todoItem: Todo = {
-    id: uuidv4(),
-    title: text,
-    completed: input.checked,
-  }
-
   const deleteBtn = createDeleteBtn(listItem, todoItem.id)
   
-  console.log(todos);
-  
-  
-  todos.push(todoItem);
 
   input.addEventListener('change', (event) => {
     const target = event.target as HTMLInputElement
@@ -66,7 +55,7 @@ export function createListItem(text: string) {
     }
   })
   
-  span.textContent = text;
+  span.textContent = todoItem.title;
   listItem.appendChild(input);
   listItem.appendChild(span);
   listItem.appendChild(deleteBtn);
@@ -80,24 +69,78 @@ export function createAddTodoClick() {
   const input: HTMLInputElement = getDomElement('.addInput');
 
   btnAddTodoElement.addEventListener('click', () => {
+    
     if(input.value.trim() === '') {
       return
     }
-    const todoItemElement = createListItem(input.value)
-
-
+    const todoItem: Todo = {
+      id: uuidv4(),
+      title: input.value,
+      completed: input.checked,
+    }
+    const todoItemElement = createListItem(todoItem)
+    todos.push(todoItem);
     todoList.append(todoItemElement);
     input.value = '';
   })
 
   input.addEventListener('change', () => {
-    const todoItemElement = createListItem(input.value)
 
       if(input.value.trim() === '') {
         return
       }
+
+      const todoItem: Todo = {
+        id: uuidv4(),
+        title: input.value,
+        completed: input.checked,
+      }
+      const todoItemElement = createListItem(todoItem)
+      todos.push(todoItem);
       
       todoList.append(todoItemElement);
       input.value = '';
   })
 }
+
+ export function showActiveTodos() {
+  
+  const filteredTodos = todos.filter(todo => {
+    if(todo.completed === false) {
+      return true
+    }
+  })
+  
+  updateTodos(filteredTodos)
+}
+
+export function showAllTodos() {
+
+  updateTodos(todos)
+
+}
+
+export function showCompletedTodos() {
+  const filteredTodos = todos.filter(todo => {
+    if(todo.completed === true) {
+      return true
+    }
+  })
+
+  updateTodos(filteredTodos)
+}
+
+function updateTodos(arrayTodos: Todo[]) {
+  const todoList = getDomElement('.todo-list');
+  todoList.innerHTML = '';
+
+  arrayTodos.forEach(todo => {
+    const newTodoItem = createListItem(todo);
+    todoList.append(newTodoItem)
+  })
+}
+
+
+
+
+
