@@ -38,19 +38,23 @@ export function createListItem(todoItem: Todo) {
   input.checked = todoItem.completed;
 
   const deleteBtn = createDeleteBtn(listItem, todoItem.id);
-
+ 
   input.addEventListener("change", (event) => {
     const target = event.target as HTMLInputElement;
+    const todoList = getDomElement(".todo-list");
 
     if (target.checked === true) {
       span.style.textDecoration = "line-through";
       todoItem.completed = true;
+      todoList.removeChild(listItem)
     }
 
     if (target.checked === false) {
       span.style.textDecoration = "none";
       todoItem.completed = false;
+      todoList.removeChild(listItem)
     }
+    
   });
 
   span.textContent = todoItem.title;
