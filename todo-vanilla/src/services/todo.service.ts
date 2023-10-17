@@ -17,9 +17,7 @@ export async function deleteTodoFromDb(id: string) {
 }
 
 export function updateTodoCheckbox(todoItem: Todo) {
-  todoItem.completed
-    ? db.table("todos").put(todoItem)
-    : db.table("todos").put(todoItem);
+  db.table("todos").put(todoItem)
 }
 
 export async function getTodos() {
