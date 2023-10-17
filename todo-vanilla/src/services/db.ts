@@ -8,10 +8,8 @@ export class TodosDatabase extends Dexie {
   constructor() {
     super("TodosDatabase");
     this.version(1).stores({
-      todos: "++id, title, completed",
+      todos: "id, title, completed",
     });
   }
 }
 export const db = new TodosDatabase();
-
-

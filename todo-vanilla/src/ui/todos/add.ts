@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 
-import { Todo, addTodoDB, todos } from "../../services/todo.service";
+import { Todo, addTodoDB } from "../../services/todo.service";
 import { getDomElement } from "../general";
 import { createListItem } from "./list";
 
@@ -11,7 +11,6 @@ export function createAddTodoClick() {
 
   btnAddTodoElement.addEventListener("click", () => {
     addTodos(todoList, input);
-    
   });
 
   input.addEventListener("change", () => {
@@ -28,10 +27,9 @@ function addTodos(todoList: Element, input: HTMLInputElement) {
     title: input.value,
     completed: input.checked,
   };
-  addTodoDB(todoItem)
+  addTodoDB(todoItem);
   const todoItemElement = createListItem(todoItem);
 
-  todos.push(todoItem);
   todoList.append(todoItemElement);
   input.value = "";
 }

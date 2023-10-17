@@ -1,4 +1,4 @@
-import { todos, Todo } from "../../services/todo.service";
+import { Todo, deleteTodoFromDb } from "../../services/todo.service";
 import { getDomElement } from "../general";
 
 function createDeleteBtn(listItem: HTMLLIElement, id: string) {
@@ -9,11 +9,7 @@ function createDeleteBtn(listItem: HTMLLIElement, id: string) {
   deleteBtn.addEventListener("click", () => {
     todoList.removeChild(listItem);
 
-    todos.forEach((todo, index) => {
-      if (id === todo.id) {
-        todos.splice(index, 1);
-      }
-    });
+    deleteTodoFromDb(id);
   });
   return deleteBtn;
 }
