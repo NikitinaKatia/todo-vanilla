@@ -1,5 +1,3 @@
-/** Сервис для взаимодействия с Todo: получения данных, обновление данных, удаление и т.п. */
-
 import { db } from "./db";
 
 export interface Todo {
@@ -10,8 +8,8 @@ export interface Todo {
 
 export const todos: Todo[] = [];
 
-export function addTodoDB(obj: Todo) {
-  db.table("todos").add(obj);
+export function addTodoDB(todo: Todo) {
+  db.table("todos").add(todo);
 }
 
 export function deleteTodoFromDb(id: string) {
@@ -24,4 +22,10 @@ export function deleteTodoFromDb(id: string) {
         }
       });
     });
+}
+
+export function updateTodoCheckbox(todoItem: Todo) {
+  todoItem.completed
+    ? db.table("todos").put(todoItem)
+    : db.table("todos").put(todoItem);
 }
