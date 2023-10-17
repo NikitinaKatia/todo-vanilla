@@ -12,20 +12,17 @@ export function addTodoDB(todo: Todo) {
   db.table("todos").add(todo);
 }
 
-export function deleteTodoFromDb(id: string) {
-  db.table("todos")
-    .toArray()
-    .then((response) => {
-      response.forEach((todo) => {
-        if (id === todo.id) {
-          db.table("todos").delete(todo.id);
-        }
-      });
-    });
+export async function deleteTodoFromDb(id: string) {
+  await db.table("todos").delete(id);
 }
 
 export function updateTodoCheckbox(todoItem: Todo) {
   todoItem.completed
     ? db.table("todos").put(todoItem)
     : db.table("todos").put(todoItem);
+}
+
+export async function getTodos() {
+  const todos = await db.table("todos").toArray();
+  return todos;
 }
