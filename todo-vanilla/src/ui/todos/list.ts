@@ -1,7 +1,7 @@
 import {
   Todo,
   deleteTodoFromDb,
-  updateTodoCheckbox,
+  updateTodo,
 } from "../../services/todo.service";
 import { getDomElement } from "../general";
 
@@ -32,7 +32,9 @@ export function createListItem(todoItem: Todo) {
     const target = event.target as HTMLInputElement;
     todoItem.completed = target.checked;
     span.style.textDecoration = target.checked ? "line-through" : "none";
-    updateTodoCheckbox(todoItem);
+    if(target.checked === true) {
+    }
+    updateTodo(todoItem);
   });
 
   listItem.append(input, span, deleteBtn);

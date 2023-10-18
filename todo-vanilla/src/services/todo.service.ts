@@ -6,8 +6,6 @@ export interface Todo {
   completed: boolean;
 }
 
-export const todos: Todo[] = [];
-
 export function addTodoDB(todo: Todo) {
   db.table("todos").add(todo);
 }
@@ -16,7 +14,7 @@ export async function deleteTodoFromDb(id: string) {
   await db.table("todos").delete(id);
 }
 
-export function updateTodoCheckbox(todoItem: Todo) {
+export function updateTodo(todoItem: Todo) {
   db.table("todos").put(todoItem)
 }
 

@@ -9,6 +9,7 @@ import {
 } from "./ui/todos/filter";
 
 function initHomePage(): void {
+  showAllTodos()
   const activeTodosBtn = getDomElement(".active-todos");
   const allTodosBtn = getDomElement(".all-todos");
   const completedTodosBtn = getDomElement(".completed-todos");
