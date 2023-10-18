@@ -9,10 +9,8 @@ function createDeleteBtn(listItem: HTMLLIElement, id: string) {
   const deleteBtn = document.createElement("button");
   const todoList = getDomElement(".todo-list");
   deleteBtn.textContent = "X";
-
   deleteBtn.addEventListener("click", () => {
     todoList.removeChild(listItem);
-
     deleteTodoFromDb(id);
   });
   return deleteBtn;
@@ -24,6 +22,7 @@ export function createListItem(todoItem: Todo) {
   const span = document.createElement("span");
   const deleteBtn = createDeleteBtn(listItem, todoItem.id);
 
+  span.style.textDecoration = todoItem.completed ? "line-through" : "none";
   span.textContent = todoItem.title;
   input.type = "checkbox";
   input.checked = todoItem.completed;
