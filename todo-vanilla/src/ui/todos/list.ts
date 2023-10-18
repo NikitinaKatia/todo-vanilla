@@ -1,19 +1,17 @@
-import { todos, Todo } from "../../services/todo.service";
+import {
+  Todo,
+  deleteTodoFromDb,
+  updateTodo,
+} from "../../services/todo.service";
 import { getDomElement } from "../general";
 
 function createDeleteBtn(listItem: HTMLLIElement, id: string) {
   const deleteBtn = document.createElement("button");
   const todoList = getDomElement(".todo-list");
   deleteBtn.textContent = "X";
-
   deleteBtn.addEventListener("click", () => {
     todoList.removeChild(listItem);
-
-    todos.forEach((todo, index) => {
-      if (id === todo.id) {
-        todos.splice(index, 1);
-      }
-    });
+    deleteTodoFromDb(id);
   });
   return deleteBtn;
 }
@@ -24,6 +22,7 @@ export function createListItem(todoItem: Todo) {
   const span = document.createElement("span");
   const deleteBtn = createDeleteBtn(listItem, todoItem.id);
 
+  span.style.textDecoration = todoItem.completed ? "line-through" : "none";
   span.textContent = todoItem.title;
   input.type = "checkbox";
   input.checked = todoItem.completed;
@@ -32,6 +31,9 @@ export function createListItem(todoItem: Todo) {
     const target = event.target as HTMLInputElement;
     todoItem.completed = target.checked;
     span.style.textDecoration = target.checked ? "line-through" : "none";
+    if(target.checked === true) {
+    }
+    updateTodo(todoItem);
   });
 
   listItem.append(input, span, deleteBtn);
