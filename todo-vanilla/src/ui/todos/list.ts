@@ -1,5 +1,7 @@
-import { deleteTodoFromDb, Todo, updateTodo } from "services/todo.service";
-import { getDomElement } from "ui/general";
+import { deleteTodoFromDb, Todo, updateTodo } from "src/services/todo.service";
+import { getDomElement } from "../general";
+
+
 
 function createDeleteBtn(listItem: HTMLLIElement, id: string) {
   const deleteBtn = document.createElement("button");

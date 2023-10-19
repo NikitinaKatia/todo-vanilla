@@ -1,9 +1,8 @@
 import { v4 as uuidv4 } from "uuid";
 
+import { Todo, addTodoDB } from "src/services/todo.service";
+import { getDomElement } from "../general";
 import { createListItem } from "./list";
-import { Todo, addTodoDB } from "services/todo.service";
-import { getDomElement } from "ui/general";
-
 
 export function createAddTodoClick() {
   const btnAddTodoElement = getDomElement(".add-todo");

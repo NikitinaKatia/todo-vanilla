@@ -2,7 +2,7 @@ import {
   showAllTodos,
   showActiveTodos,
   showCompletedTodos,
-} from "ui/todos/filter";
+} from "src/ui/todos/filter";
 
 export function getValue<T>(key: string): T | null {
   const localValue = localStorage.getItem(key);

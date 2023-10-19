@@ -1,7 +1,8 @@
-import { setValue } from "services/local-storage.service";
-import { getTodos, Todo } from "services/todo.service";
-import { getDomElement } from "ui/general";
+import { setValue } from "src/services/local-storage.service";
+import { getTodos, Todo } from "src/services/todo.service";
+import { getDomElement } from "../general";
 import { createListItem } from "./list";
+
 
 
 
