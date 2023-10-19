@@ -1,19 +1,30 @@
-import { Todo, getTodos } from "../../services/todo.service";
-import { getDomElement } from "../general";
+import { setValue } from "services/local-storage.service";
+import { getTodos, Todo } from "services/todo.service";
+import { getDomElement } from "ui/general";
 import { createListItem } from "./list";
 
+
+
 export async function showActiveTodos() {
+  
+  setValue("filter", "active");
+  
   const todos = await getTodos();
+  // const filteredTodos = await db.table('todos').where({completed: 0}).toArray()
   const filteredTodos = todos.filter((todo) => todo.completed === false);
+
   updateTodos(filteredTodos);
 }
 
 export async function showAllTodos() {
+  setValue("filter", "all");
+
   const todos = await getTodos();
   updateTodos(todos);
 }
 
 export async function showCompletedTodos() {
+  setValue("filter", "completed");
   const todos = await getTodos();
   const filteredTodos = todos.filter((todo) => todo.completed === true);
   updateTodos(filteredTodos);

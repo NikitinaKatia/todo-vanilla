@@ -1,9 +1,5 @@
-import {
-  Todo,
-  deleteTodoFromDb,
-  updateTodo,
-} from "../../services/todo.service";
-import { getDomElement } from "../general";
+import { deleteTodoFromDb, Todo, updateTodo } from "services/todo.service";
+import { getDomElement } from "ui/general";
 
 function createDeleteBtn(listItem: HTMLLIElement, id: string) {
   const deleteBtn = document.createElement("button");
@@ -31,7 +27,7 @@ export function createListItem(todoItem: Todo) {
     const target = event.target as HTMLInputElement;
     todoItem.completed = target.checked;
     span.style.textDecoration = target.checked ? "line-through" : "none";
-    if(target.checked === true) {
+    if (target.checked === true) {
     }
     updateTodo(todoItem);
   });

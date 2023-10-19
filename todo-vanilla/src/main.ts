@@ -1,17 +1,14 @@
 import "./theme/index.css";
 
-import { getDomElement } from "./ui/general";
-import { createAddTodoClick } from "./ui/todos/add";
-import {
-  showActiveTodos,
-  showAllTodos,
-  showCompletedTodos,
-} from "./ui/todos/filter";
+import { initRender } from "services/local-storage.service";
+import { getDomElement } from "ui/general";
+import { createAddTodoClick } from "ui/todos/add";
+import { showActiveTodos, showAllTodos, showCompletedTodos } from "ui/todos/filter";
 
 function initHomePage(): void {
-  showAllTodos()
+
+  initRender()
   createAddTodoClick();
-  
   
   const activeTodosBtn = getDomElement(".active-todos");
   const allTodosBtn = getDomElement(".all-todos");
