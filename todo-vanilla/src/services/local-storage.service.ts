@@ -12,16 +12,3 @@ export function getValue<T>(key: string): T | null {
 export function setValue<T>(key: string, value: T): void {
   localStorage.setItem(key, JSON.stringify(value));
 }
-
-export function initRender() {
-  const filterValue = getValue("filter");
-  if (filterValue === "all") {
-    showAllTodos();
-  }
-  if (filterValue === "active") {
-    showActiveTodos();
-  }
-  if (filterValue === "completed") {
-    showCompletedTodos();
-  }
-}

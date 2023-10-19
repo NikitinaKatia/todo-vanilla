@@ -1,5 +1,7 @@
 import { deleteTodoFromDb, Todo, updateTodo } from "src/services/todo.service";
 import { getDomElement } from "../general";
+import { getValue } from "src/services/local-storage.service";
+import { showAllTodos, showActiveTodos, showCompletedTodos } from "./filter";
 
 
 
@@ -36,4 +38,17 @@ export function createListItem(todoItem: Todo) {
 
   listItem.append(input, span, deleteBtn);
   return listItem;
+}
+
+export function initRender() {
+  const filterValue: string | null = getValue("filter");
+  if (filterValue === "all") {
+    showAllTodos();
+  }
+  if (filterValue === "active") {
+    showActiveTodos();
+  }
+  if (filterValue === "completed") {
+    showCompletedTodos();
+  }
 }
