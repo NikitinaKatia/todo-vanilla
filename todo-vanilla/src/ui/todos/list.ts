@@ -3,8 +3,6 @@ import { getDomElement } from "../general";
 import { getValue } from "src/services/local-storage.service";
 import { showAllTodos, showActiveTodos, showCompletedTodos } from "./filter";
 
-
-
 function createDeleteBtn(listItem: HTMLLIElement, id: string) {
   const deleteBtn = document.createElement("button");
   const todoList = getDomElement(".todo-list");
