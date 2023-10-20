@@ -1,7 +1,6 @@
 import Dexie from "dexie";
+
 import { Todo } from "./todo.service";
-
-
 
 export class TodosDatabase extends Dexie {
   todos!: Dexie.Table<Todo, string>;

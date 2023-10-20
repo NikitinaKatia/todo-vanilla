@@ -3,55 +3,32 @@ import { v4 as uuidv4 } from "uuid";
 import { Todo, addTodoDB } from "src/services/todo.service";
 import { getDomElement } from "../general";
 import { createListItem } from "./list";
-import { getValue } from "src/services/local-storage.service";
+import { checkFilter } from "./filter";
 
-export function createAddTodoClick() {
-  const btnAddTodoElement = getDomElement(".add-todo");
-  const todoList = getDomElement(".todo-list");
+export function createAddTodoClick(): void {
+  const btnAddTodoElement: Element = getDomElement(".add-todo");
   const input: HTMLInputElement = getDomElement(".addInput");
-  
+
   btnAddTodoElement.addEventListener("click", () => {
-    const filterValue: string | null = getValue('filter');
-    
-    if(filterValue === 'all') {
-      addTodos(todoList, input);
-    }
-    if(filterValue === 'active') {
-      addTodos(todoList, input);
-    }
-    if(filterValue === 'completed') {
-      addCompletedTodos(input);
-      input.value=''
-    }
-    
+    checkFilter();
   });
+
   input.addEventListener("change", () => {
-    const filterValue: string | null = getValue('filter');
-    
-    if(filterValue === 'all') {
-      addTodos(todoList, input);
-    }
-    if(filterValue === 'active') {
-      addTodos(todoList, input);
-    }
-    if(filterValue === 'completed') {
-      addCompletedTodos(input);
-      input.value=''
-    }
+    checkFilter();
   });
 }
 
-function addCompletedTodos(input: HTMLInputElement) {
+export function addCompletedTodos(input: HTMLInputElement): void {
   const todoItem: Todo = {
     id: uuidv4(),
     title: input.value,
     completed: input.checked,
   };
-  
+
   addTodoDB(todoItem);
 }
 
-function addTodos(todoList: Element, input: HTMLInputElement) {
+export function addTodos(todoList: Element, input: HTMLInputElement): void {
   if (input.value.trim() === "") {
     return;
   }
@@ -60,9 +37,9 @@ function addTodos(todoList: Element, input: HTMLInputElement) {
     title: input.value,
     completed: input.checked,
   };
-  
+
   addTodoDB(todoItem);
-  const todoItemElement = createListItem(todoItem);
+  const todoItemElement: HTMLLIElement = createListItem(todoItem);
 
   todoList.append(todoItemElement);
   input.value = "";
