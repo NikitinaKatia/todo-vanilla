@@ -10,16 +10,15 @@ export function addTodoDB(todo: Todo): void {
   db.table("todos").add(todo);
 }
 
-export async function deleteTodoFromDb(id: string): Promise<void> {
-  await db.table("todos").delete(id);
+export function deleteTodoFromDb(id: string) {
+  db.table("todos").delete(id);
 }
 
 export function updateTodo(todoItem: Todo): void {
-  db.table("todos").put(todoItem)
+  db.table("todos").put(todoItem);
 }
 
 export async function getTodos(): Promise<Todo[]> {
-  const todos: Todo[] = await db.table("todos").toArray();
-  
+  const todos = await db.table<Todo>("todos").toArray();
   return todos;
 }

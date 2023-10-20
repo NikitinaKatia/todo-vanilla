@@ -3,44 +3,39 @@ import { v4 as uuidv4 } from "uuid";
 import { Todo, addTodoDB } from "src/services/todo.service";
 import { getDomElement } from "../general";
 import { createListItem } from "./list";
-import { checkFilter } from "./filter";
+import { getValue } from "src/services/local-storage.service";
 
 export function createAddTodoClick(): void {
   const btnAddTodoElement: Element = getDomElement(".add-todo");
   const input: HTMLInputElement = getDomElement(".addInput");
+  const todoList: Element = getDomElement(".todo-list");
 
   btnAddTodoElement.addEventListener("click", () => {
-    checkFilter();
+    addTodos(todoList, input);
   });
 
   input.addEventListener("change", () => {
-    checkFilter();
+    addTodos(todoList, input);
   });
 }
 
-export function addCompletedTodos(input: HTMLInputElement): void {
-  const todoItem: Todo = {
-    id: uuidv4(),
-    title: input.value,
-    completed: input.checked,
-  };
-
-  addTodoDB(todoItem);
-}
-
-export function addTodos(todoList: Element, input: HTMLInputElement): void {
+function addTodos(todoList: Element, input: HTMLInputElement): void {
   if (input.value.trim() === "") {
     return;
   }
+  const value = getValue("filter");
   const todoItem: Todo = {
     id: uuidv4(),
     title: input.value,
     completed: input.checked,
   };
 
-  addTodoDB(todoItem);
-  const todoItemElement: HTMLLIElement = createListItem(todoItem);
-
-  todoList.append(todoItemElement);
+  if (value === "completed") {
+    addTodoDB(todoItem);
+  } else {
+    addTodoDB(todoItem);
+    const todoItemElement = createListItem(todoItem);
+    todoList.append(todoItemElement);
+  }
   input.value = "";
 }

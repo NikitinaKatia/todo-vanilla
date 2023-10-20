@@ -10,9 +10,9 @@ function initHomePage(): void {
   initRender()
   createAddTodoClick();
   
-  const activeTodosBtn: Element = getDomElement(".active-todos");
-  const allTodosBtn: Element = getDomElement(".all-todos");
-  const completedTodosBtn: Element = getDomElement(".completed-todos");
+  const activeTodosBtn = getDomElement(".active-todos");
+  const allTodosBtn = getDomElement(".all-todos");
+  const completedTodosBtn = getDomElement(".completed-todos");
 
   activeTodosBtn?.addEventListener("click", showActiveTodos);
   allTodosBtn?.addEventListener("click", showAllTodos);
