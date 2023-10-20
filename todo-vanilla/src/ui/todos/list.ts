@@ -15,6 +15,7 @@ function createDeleteBtn(listItem: HTMLLIElement, id: string) {
 }
 
 export function createListItem(todoItem: Todo) {
+  const todoList = getDomElement(".todo-list");
   const listItem = document.createElement("li");
   const input = document.createElement("input");
   const span = document.createElement("span");
@@ -26,11 +27,17 @@ export function createListItem(todoItem: Todo) {
   input.checked = todoItem.completed;
 
   input.addEventListener("change", (event) => {
+    const filterValue: string | null = getValue('filter');
+
+    if(filterValue === 'active') {
+      todoList.removeChild(listItem)
+    }
+    if(filterValue === 'completed') {
+      todoList.removeChild(listItem)
+    }
     const target = event.target as HTMLInputElement;
     todoItem.completed = target.checked;
     span.style.textDecoration = target.checked ? "line-through" : "none";
-    if (target.checked === true) {
-    }
     updateTodo(todoItem);
   });
 
