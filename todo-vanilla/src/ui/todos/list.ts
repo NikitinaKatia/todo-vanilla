@@ -30,7 +30,7 @@ export function createListItem(todoItem: Todo): HTMLLIElement {
   input.checked = todoItem.completed;
 
   input.addEventListener("change", (event) => {
-    const filterValue: string | null = getValue("filter");
+    const filterValue = getValue<string | null>("filter");
     const target = event.target as HTMLInputElement;
 
     todoItem.completed = target.checked;
@@ -50,7 +50,7 @@ export function createListItem(todoItem: Todo): HTMLLIElement {
 }
 
 export function initRender(): void {
-  const filterValue: string | null = getValue("filter");
+  const filterValue = getValue<string | null>("filter");
   if (filterValue === "all") {
     showAllTodos();
   }

@@ -23,14 +23,14 @@ function addTodos(todoList: Element, input: HTMLInputElement): void {
   if (input.value.trim() === "") {
     return;
   }
-  const value = getValue("filter");
+  const filteredValue = getValue<string | null>("filter");
   const todoItem: Todo = {
     id: uuidv4(),
     title: input.value,
     completed: input.checked,
   };
 
-  if (value === "completed") {
+  if (filteredValue === "completed") {
     addTodoDB(todoItem);
   } else {
     addTodoDB(todoItem);
