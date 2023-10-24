@@ -4,11 +4,10 @@ import { getDomElement } from "../general";
 import { createListItem } from "./list";
 
 export async function showActiveTodos(): Promise<void> {
-  const todos = await getTodos();
-  const filteredTodos = todos.filter((todo) => todo.completed === false);
+  const todos = await getTodos(false);
 
   setValue("filter", "active");
-  updateTodos(filteredTodos);
+  updateTodos(todos);
 }
 
 export async function showAllTodos(): Promise<void> {
@@ -19,11 +18,11 @@ export async function showAllTodos(): Promise<void> {
 }
 
 export async function showCompletedTodos(): Promise<void> {
-  const todos = await getTodos();
-  const filteredTodos = todos.filter((todo) => todo.completed === true);
+  const todos = await getTodos(true);
+  console.log(todos, "todos");
 
   setValue("filter", "completed");
-  updateTodos(filteredTodos);
+  updateTodos(todos);
 }
 
 function updateTodos(todos: Todo[]): void {

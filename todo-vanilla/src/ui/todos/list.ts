@@ -51,13 +51,18 @@ export function createListItem(todoItem: Todo): HTMLLIElement {
 
 export function initRender(): void {
   const filterValue = getValue<string | null>("filter");
-  if (filterValue === "all") {
-    showAllTodos();
-  }
-  if (filterValue === "active") {
-    showActiveTodos();
-  }
-  if (filterValue === "completed") {
-    showCompletedTodos();
+
+  const showFunctions = {
+    all: showAllTodos,
+    active: showActiveTodos,
+    completed: showCompletedTodos,
+  };
+
+  if (filterValue === null) {
+    return;
+  } else {
+    const selectedShowFunction =
+      showFunctions[filterValue as keyof typeof showFunctions] || showAllTodos;
+    selectedShowFunction();
   }
 }
