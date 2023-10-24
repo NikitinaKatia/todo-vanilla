@@ -62,7 +62,7 @@ export function initRender(): void {
     return;
   } else {
     const selectedShowFunction =
-      showFunctions[filterValue as keyof typeof showFunctions] || showAllTodos;
+      showFunctions[filterValue as "all" |"active"|"completed"] || showAllTodos;
     selectedShowFunction();
   }
 }
