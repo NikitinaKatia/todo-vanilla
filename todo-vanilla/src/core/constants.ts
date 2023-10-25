@@ -1,3 +1,4 @@
-// core(ядро) - слой общих данных: utils, constants и т.п.
+export const FILTER_TODO_KEY = "filter";
 
-export const DEFAULT_COMPETED_TODO = false;
+export const IS_COMPLETED_TODO = 1;
+export const IS_NOT_COMPLETED_TODO = 0;

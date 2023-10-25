@@ -2,26 +2,26 @@ import { setValue } from "src/services/local-storage.service";
 import { getTodos, Todo } from "src/services/todo.service";
 import { getDomElement } from "../general";
 import { createListItem } from "./list";
+import { FILTER_TODO_KEY } from "src/core/constants";
 
 export async function showActiveTodos(): Promise<void> {
   const todos = await getTodos(false);
 
-  setValue("filter", "active");
+  setValue(FILTER_TODO_KEY, "active");
   updateTodos(todos);
 }
 
 export async function showAllTodos(): Promise<void> {
   const todos: Todo[] = await getTodos();
 
-  setValue("filter", "all");
+  setValue(FILTER_TODO_KEY, "all");
   updateTodos(todos);
 }
 
 export async function showCompletedTodos(): Promise<void> {
   const todos = await getTodos(true);
-  console.log(todos, "todos");
 
-  setValue("filter", "completed");
+  setValue(FILTER_TODO_KEY, "completed");
   updateTodos(todos);
 }
 

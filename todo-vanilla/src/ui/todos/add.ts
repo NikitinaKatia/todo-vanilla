@@ -2,8 +2,9 @@ import { v4 as uuidv4 } from "uuid";
 
 import { Todo, addTodoDB } from "src/services/todo.service";
 import { getDomElement } from "../general";
-import { createListItem } from "./list";
+import { FilterValueType, createListItem } from "./list";
 import { getValue } from "src/services/local-storage.service";
+import { FILTER_TODO_KEY } from "src/core/constants";
 
 export function createAddTodoClick(): void {
   const btnAddTodoElement: Element = getDomElement(".add-todo");
@@ -23,7 +24,7 @@ function addTodos(todoList: Element, input: HTMLInputElement): void {
   if (input.value.trim() === "") {
     return;
   }
-  const filteredValue = getValue<string | null>("filter");
+  const filteredValue = getValue<FilterValueType>(FILTER_TODO_KEY);
   const todoItem: Todo = {
     id: uuidv4(),
     title: input.value,

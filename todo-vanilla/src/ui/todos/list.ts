@@ -2,6 +2,9 @@ import { deleteTodoFromDb, Todo, updateTodo } from "src/services/todo.service";
 import { getDomElement } from "../general";
 import { getValue } from "src/services/local-storage.service";
 import { showAllTodos, showActiveTodos, showCompletedTodos } from "./filter";
+import { FILTER_TODO_KEY } from "src/core/constants";
+
+export type FilterValueType = "all" | "active" | "completed";
 
 function createDeleteBtn(
   listItem: HTMLLIElement,
@@ -30,7 +33,7 @@ export function createListItem(todoItem: Todo): HTMLLIElement {
   input.checked = todoItem.completed;
 
   input.addEventListener("change", (event) => {
-    const filterValue = getValue<string | null>("filter");
+    const filterValue = getValue<FilterValueType>(FILTER_TODO_KEY);
     const target = event.target as HTMLInputElement;
 
     todoItem.completed = target.checked;
@@ -50,7 +53,7 @@ export function createListItem(todoItem: Todo): HTMLLIElement {
 }
 
 export function initRender(): void {
-  const filterValue = getValue<string | null>("filter");
+  const filterValue = getValue<FilterValueType>(FILTER_TODO_KEY);
 
   const showFunctions = {
     all: showAllTodos,
@@ -59,10 +62,10 @@ export function initRender(): void {
   };
 
   if (filterValue === null) {
+    showAllTodos();
     return;
-  } else {
-    const selectedShowFunction =
-      showFunctions[filterValue as "all" |"active"|"completed"] || showAllTodos;
-    selectedShowFunction();
   }
+
+  const selectedShowFunction = showFunctions[filterValue] || showAllTodos;
+  selectedShowFunction();
 }
