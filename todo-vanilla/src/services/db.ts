@@ -1,9 +1,9 @@
 import Dexie from "dexie";
 
-import { Todo } from "./todo.service";
+import { TodoIndexDB } from "./todo.service";
 
 export class TodosDatabase extends Dexie {
-  todos!: Dexie.Table<Todo, string>;
+  todos!: Dexie.Table<TodoIndexDB, string>;
 
   constructor() {
     super("TodosDatabase");
